@@ -5,12 +5,6 @@ high_low_split(T,[Head|Tail],[Head|Lows],Highs) :- T > Head, high_low_split(T,Ta
 high_low_split(T,[Head|Tail],Lows,[Head|Highs]) :- T < Head, high_low_split(T,Tail,Lows,Highs).
 
 q_sort([],[]).
-q_sort([T],[T]).
-
-q_sort(Sorted,[Pibot,V]) :-
-  high_low_split(Pibot,[V],Lows,Highs),
-  append(Lows,[Pibot|Highs],Sorted).
-
 q_sort(Sorted,[Pibot|Tail]) :-
   high_low_split(Pibot,Tail,Lows,Highs),
   q_sort(LowSorted,Lows),
