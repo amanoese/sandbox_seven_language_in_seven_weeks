@@ -5,12 +5,23 @@
 %         3, 4, _, _, ]
 %       , Solution).
 
+:- use_module(library(clpfd)).
+:- use_module(library(chr)).
+
 main :-
   sudoku([ _, _, 2, 3, _, _, _, _, _, _, _, _, 3, 4, _, _ ] , Solution),
-  print(Solution).
+    squaer_print(Solution,4).
+
+squaer_print([],_).
+squaer_print(List,N) :-
+  hprolog:split_at(N,List,Row,TailList),
+  print(Row),
+  nl,
+  squaer_print(TailList,N).
+
+
 
 sudoku(Puzzle,Solution) :-
-  use_module(library(clpfd)),
   Solution = Puzzle,
   Puzzle =
   [ S11, S12, S13, S14
